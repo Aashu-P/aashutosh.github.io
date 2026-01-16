@@ -1,4 +1,9 @@
-# Blogs
+---
+layout: page
+title: Blogs
+---
+[Home](./) | [Blog](./blog)
+
 ## Introductory Post
 ### Why does learning data science in social and interdisciplinary contexts matters?
 When I think of data science, my mind goes straight to numbers, models, and predictions. But most of the data in data science actually represents people. Many, maybe even most (scary), aspects of their lives: behavior, choices, habits, mistakes, and so on. That’s why learning data science in social and interdisciplinary contexts matters.

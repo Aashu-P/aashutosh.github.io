@@ -1,6 +1,10 @@
-# Aashutosh Panchal's Portfolio
+---
+layout: home
+title: Aashutosh Panchal
+---
+[Home](./) | [Blog](./blog)
 
-## Blog
+## Blogs
 -[Introductory Post](./blog#introductory-post)
 
 ## About Me
