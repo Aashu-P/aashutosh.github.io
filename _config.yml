@@ -1,10 +1,10 @@
 theme: minima
 site.minima.nav_pages:
-  - about.md
-  - portfolio.md
+  - index.md
+  - blog.md
 minima.social_links:
   - title: GitHub
     url: "https://github.com/Aashu-P"
   - title: LinkedIn
     url: "https://www.linkedin.com/in/aashutosh-panchal/"
-title: Home
+title:
