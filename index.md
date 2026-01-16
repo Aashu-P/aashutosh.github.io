@@ -2,7 +2,6 @@
 layout: home
 title: Aashutosh Panchal
 ---
-[Home](./) | [Blog](./blog)
 
 ## Blogs
 -[Introductory Post](./blog#introductory-post)
