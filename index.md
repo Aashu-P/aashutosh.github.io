@@ -4,8 +4,8 @@ title: Aashutosh Panchal
 ---
 
 ## Blogs
--[Introductory Post](./blog#introductory-post)
--[Ethically Ambiguous Data Modeling](./blog#ethically-ambiguous)
+- [Introductory Post](./blog#introductory-post)
+- [Ethically Ambiguous Data Modeling](./blog#ethically-ambiguous)
 
 ## About Me
 My name is Aashutosh Panchal and I'm currently a junior at UNC Charlotte pursuing a major in Data Science and a minor in Statistics. 
