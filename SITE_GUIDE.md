@@ -68,6 +68,22 @@ Quick reference for adding content to this site. No HTML knowledge needed for an
   ![description of image]({{ '/assets/images/your-image.jpg' | relative_url }})
    ```
 
+3. If you want the image smaller, use this HTML version in your post:
+
+  ```html
+  <img class="post-image-small" src="{{ '/assets/images/your-image.jpg' | relative_url }}" alt="description of image">
+  ```
+
+4. To change the size yourself, open `assets/css/style.css` and edit the width in `.post-image-small`:
+
+  ```css
+  .post-image-small {
+    width: min(420px, 100%);
+  }
+  ```
+
+  - Change `420px` to any value you want (example: `320px` smaller, `520px` bigger).
+
 ---
 
 ## Edit About Me

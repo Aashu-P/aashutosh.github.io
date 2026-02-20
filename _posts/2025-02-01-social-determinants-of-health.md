@@ -27,4 +27,4 @@ These two concepts are related because the Social Determinants of Health decides
 - Ability to access healthcare when needed
 - Ability to live in a safe neighborhood
 
-![Drawing of the relationship between the two concepts]({{ '/assets/images/SDOH%20and%20Capabilities.jpg' | relative_url }})
+<img class="post-image-small" src="{{ '/assets/images/SDOH%20and%20Capabilities.jpg' | relative_url }}" alt="Drawing of the relationship between the two concepts">
