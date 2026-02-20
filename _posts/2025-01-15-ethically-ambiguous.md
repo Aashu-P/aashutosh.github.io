@@ -1,8 +1,6 @@
 ---
 layout: post
 title: "Ethically Ambiguous Data Modeling"
-date: 2025-01-15
-excerpt: "When we create models in data science, we are more often than not in the realm of ethically ambiguous territory — where a model might be technically perfect but morally murky."
 ---
 
 When we create models in data science, we are more often than not in the realm of ethically ambiguous data modeling; it's a space where a model might be working perfectly and is completely law abiding, but morally still in the middle ground of right or wrong.

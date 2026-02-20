@@ -1,8 +1,6 @@
 ---
 layout: post
 title: "Introductory Post"
-date: 2025-01-01
-excerpt: "Why does learning data science in social and interdisciplinary contexts matter?"
 ---
 
 #### Why does learning data science in social and interdisciplinary contexts matter?

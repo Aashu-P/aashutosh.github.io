@@ -1,8 +1,6 @@
 ---
 layout: post
 title: "Social Determinants of Health and the Capabilities Approach"
-date: 2025-02-01
-excerpt: "Health is more than doctors and medicine. It's shaped by where you live, your income, your education, and even your proximity to grocery stores."
 ---
 
 When you think about 'health,' you might think doctors and medicine. But the Social Determinants of Health is the stuff around that — like where you live, your income, your education, and even your proximity to grocery stores. To me, the Social Determinants of Health essentially means your health is determined by the environment you live in. How much you make, where you live, your education, etc. are all factors that can have a huge impact on your health, long before you even step foot in a hospital.
