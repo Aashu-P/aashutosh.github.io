@@ -7,17 +7,17 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}" />
 </head>
 <body>
 
   <header class="site-header">
     <div class="container header-inner">
-      <a class="site-brand" href="/">Aashutosh Panchal</a>
+      <a class="site-brand" href="{{ '/' | relative_url }}">Aashutosh Panchal</a>
       <nav class="site-nav">
-        <a href="/" class="nav-link{% if page.url == '/' %} active{% endif %}">Home</a>
-        <a href="/blog" class="nav-link{% if page.url contains '/blog' %} active{% endif %}">Blogs</a>
-        <a href="/projects" class="nav-link{% if page.url == '/projects/' or page.url == '/projects.html' %} active{% endif %}">Projects</a>
+        <a href="{{ '/' | relative_url }}" class="nav-link{% if page.url == '/' %} active{% endif %}">Home</a>
+        <a href="{{ '/blog/' | relative_url }}" class="nav-link{% if page.url contains '/blog' %} active{% endif %}">Blogs</a>
+        <a href="{{ '/projects/' | relative_url }}" class="nav-link{% if page.url == '/projects/' or page.url == '/projects.html' %} active{% endif %}">Projects</a>
       </nav>
     </div>
   </header>
@@ -38,6 +38,21 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    (function () {
+      var baseUrl = '{{ site.baseurl }}';
+      if (!baseUrl) return;
+
+      var links = document.querySelectorAll('a[href^="/"]');
+      links.forEach(function (link) {
+        var href = link.getAttribute('href');
+        if (!href || href.startsWith('//')) return;
+        if (href.startsWith(baseUrl + '/')) return;
+        link.setAttribute('href', baseUrl + href);
+      });
+    })();
+  </script>
 
 </body>
 </html>

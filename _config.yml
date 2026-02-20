@@ -1,5 +1,7 @@
 title: Aashutosh Panchal
 author: Aashutosh Panchal
+url: "https://aashu-p.github.io"
+baseurl: "/aashutosh.github.io"
 
 permalink: /blog/:title/
 

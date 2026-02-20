@@ -3,7 +3,7 @@ layout: default
 ---
 
 <section class="hero">
-  <h1 class="hero-title">Hi, I'm Aashutosh</h1>
+  <h1 class="hero-title">I'm Aashutosh</h1>
   <p class="hero-sub">Data Science student at UNC Charlotte. I'm interested in ML, statistics, and the social implications of data.</p>
 </section>
 
@@ -26,11 +26,7 @@ layout: default
   <div class="post-grid">
     {% for post in site.posts limit:3 %}
     <a href="{{ post.url }}" class="post-card">
-      <p class="post-card-date">{{ post.date | date: "%B %d, %Y" }}</p>
       <h3 class="post-card-title">{{ post.title }}</h3>
-      {% if post.excerpt %}
-      <p class="post-card-excerpt">{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
-      {% endif %}
     </a>
     {% endfor %}
   </div>
