@@ -6,6 +6,7 @@ title: Aashutosh Panchal
 ## Blogs
 - [Introductory Post](./blog#introductory-post)
 - [Ethically Ambiguous Data Modeling](./blog#ethically-ambiguous)
+- [Social Determinants of Health and Capabilities Approach](./blog#social-determinants-of-health-and-capabilities-approach)
 
 ## About Me
 My name is Aashutosh Panchal and I'm currently a junior at UNC Charlotte pursuing a major in Data Science and a minor in Statistics. 
