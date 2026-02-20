@@ -65,7 +65,7 @@ Quick reference for adding content to this site. No HTML knowledge needed for an
 2. Reference it in a blog post or page like this:
 
    ```markdown
-   ![description of image](/assets/images/your-image.jpg)
+  ![description of image]({{ '/assets/images/your-image.jpg' | relative_url }})
    ```
 
 ---
