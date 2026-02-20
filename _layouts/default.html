@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% if page.title %}{{ page.title }} — {% endif %}{{ site.title }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="site-brand" href="/">Aashutosh Panchal</a>
+      <nav class="site-nav">
+        <a href="/" class="nav-link{% if page.url == '/' %} active{% endif %}">Home</a>
+        <a href="/blog" class="nav-link{% if page.url contains '/blog' %} active{% endif %}">Blogs</a>
+        <a href="/projects" class="nav-link{% if page.url == '/projects/' or page.url == '/projects.html' %} active{% endif %}">Projects</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <div class="container">
+      {{ content }}
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-name">Aashutosh Panchal</p>
+      <div class="footer-links">
+        <a href="{{ site.social.linkedin }}" class="footer-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <span class="footer-sep">·</span>
+        <a href="{{ site.social.github }}" class="footer-link" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

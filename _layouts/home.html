@@ -1,0 +1,37 @@
+---
+layout: default
+---
+
+<section class="hero">
+  <h1 class="hero-title">Hi, I'm Aashutosh</h1>
+  <p class="hero-sub">Data Science student at UNC Charlotte. I'm interested in ML, statistics, and the social implications of data.</p>
+</section>
+
+<section class="section">
+  <h2 class="section-title">About Me</h2>
+  <p>My name is Aashutosh Panchal and I'm currently a junior at UNC Charlotte pursuing a major in Data Science and a minor in Statistics. Currently I enjoy learning about core ML models and their applications.</p>
+  <p>Outside of the classroom, here are a couple things I like:</p>
+  <ul class="about-list">
+    <li>Cats. (I don't even have a cat)</li>
+    <li>Ragebaiting my friends</li>
+    <li>Reels (Hopefully my brain hasn't rotted beyond repair)</li>
+  </ul>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <h2 class="section-title">Recent Posts</h2>
+    <a href="/blog" class="view-all">View all →</a>
+  </div>
+  <div class="post-grid">
+    {% for post in site.posts limit:3 %}
+    <a href="{{ post.url }}" class="post-card">
+      <p class="post-card-date">{{ post.date | date: "%B %d, %Y" }}</p>
+      <h3 class="post-card-title">{{ post.title }}</h3>
+      {% if post.excerpt %}
+      <p class="post-card-excerpt">{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
+      {% endif %}
+    </a>
+    {% endfor %}
+  </div>
+</section>
