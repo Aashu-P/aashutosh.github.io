@@ -94,30 +94,34 @@ Quick reference for adding content to this site. No HTML knowledge needed for mo
 
 ## Add a Cover Image to a Project Card
 
-The cover image is the thumbnail shown on the Projects listing page.
+The cover image is the square thumbnail shown on the Projects listing page.
+Until you add one, the card shows a plain dark background — that's intentional,
+not a bug. No placeholder file is needed.
 
-1. Prepare your image — a square crop works best (e.g. 600×600 px). Any common format works (JPG, PNG, WEBP).
+### Housing Affordability cover image (do this now)
 
-2. Rename the file to match the project name. For example:
+1. Pick any screenshot or image you want to represent the project.
+   **A square crop looks best** (e.g. export at 600×600 px or just crop it square).
+
+2. Name the file exactly:
    ```
    housing-affordability.jpg
    ```
+   (PNG or WEBP also work — just keep the name `housing-affordability` and update the
+   extension in `projects.md` line 15 to match, e.g. `.png`)
 
-3. Drop the file into:
+3. Drop it into:
    ```
    assets/images/projects/
    ```
-   Create the `projects/` subfolder inside `assets/images/` if it doesn't exist yet.
+   That folder already exists in the repo.
 
-4. The card on the Projects page will automatically show the image — no code changes needed,
-   as long as the filename matches what's already in `projects.md`.
+4. Commit and push. **No code changes needed** — the card is already wired to that filename.
 
-   For the Housing Affordability project the expected filename is:
-   ```
-   assets/images/projects/housing-affordability.jpg
-   ```
+### Adding a cover image for a future project
 
-5. Commit and push.
+Same process — the card in `projects.md` has a `background-image` style pointing to
+`assets/images/projects/your-project-name.jpg`. Just drop the correct file in and push.
 
 ---
 

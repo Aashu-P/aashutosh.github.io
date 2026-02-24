@@ -11,14 +11,10 @@ permalink: /projects/
   <div class="project-grid">
 
     <a href="{{ '/projects/housing-affordability/' | relative_url }}" class="project-card">
-      <div class="project-card-thumb">
-        <!-- Replace the placeholder below once you have a cover image.
-             Drop your image into assets/images/projects/ and swap the img tag in. -->
-        <img src="{{ '/assets/images/projects/housing-affordability.jpg' | relative_url }}"
-             alt="Housing Affordability"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-             style="display:block;">
-        <span class="project-card-thumb-placeholder" style="display:none;">&#9632;</span>
+      <div class="project-card-thumb"
+           style="background-image: url('{{ '/assets/images/projects/housing-affordability.jpg' | relative_url }}');">
+        <!-- Cover image loads automatically once you add the file.
+             See SITE_GUIDE.md → "Add a Cover Image to a Project Card" -->
       </div>
       <div class="project-card-footer">
         <p class="project-card-name">Housing Affordability</p>
