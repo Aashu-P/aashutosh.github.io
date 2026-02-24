@@ -1,0 +1,293 @@
+---
+layout: project
+title: "Housing Affordability"
+permalink: /projects/housing-affordability/
+---
+
+<div class="project-back">
+  <a href="{{ '/projects/' | relative_url }}" class="back-link">← All Projects</a>
+</div>
+
+<div class="project-hero">
+  <h1 class="project-title">Housing Affordability</h1>
+  <p class="project-lead">
+    How has it become harder to buy a home in America? This project examines four decades of U.S.
+    housing price data against median household income to reveal structural shifts in affordability
+    and striking parallels to the period before the 2008 financial crisis.
+  </p>
+  <div class="project-tags">
+    <span class="project-tag">Python</span>
+    <span class="project-tag">Pandas</span>
+    <span class="project-tag">Data Visualization</span>
+    <span class="project-tag">FRED Data</span>
+    <span class="project-tag">EDA</span>
+  </div>
+</div>
+
+
+<!-- ── Section 1 ─────────────────────────────────────────── -->
+<section class="proj-section">
+  <h2 class="proj-section-title">What's the Problem?</h2>
+  <div class="proj-section-body">
+    <p>
+      Housing affordability has become a major economic and social problem in the United States.
+      This project explores how U.S. housing affordability has changed over time, and what different
+      housing price metrics reveal about broader market dynamics. Rather than just relying on a single
+      affordability measure, this analysis examines how various price metrics provide a layered insight
+      into market structure, trends, and shifts.
+    </p>
+    <p>
+      Understanding these relationships is important for first-time buyers aiming to manage financial
+      risk, for policymakers working to address supply shortages, and for economists seeking to gauge
+      economic health and forecast the market. By analyzing how income growth compares to changes in
+      housing prices, this project aims to determine whether purchasing power has kept pace with the
+      rising costs of homeownership.
+    </p>
+  </div>
+</section>
+
+
+<!-- ── Section 2 ─────────────────────────────────────────── -->
+<section class="proj-section">
+  <h2 class="proj-section-title">The Data</h2>
+  <div class="proj-section-body">
+    <p>
+      This analysis uses four publicly available datasets from the Federal Reserve Economic Data
+      (FRED) database. In the raw data, each row represents a specific point in time — ranging from
+      quarterly to yearly observations depending on the dataset — for a given economic indicator.
+      The features explored are:
+    </p>
+    <ul>
+      <li><strong>Median Sales Price of Houses Sold</strong></li>
+      <li><strong>Average Sales Price of Houses Sold</strong></li>
+      <li><strong>All-Transactions House Price Index (HPI)</strong></li>
+      <li><strong>Median Household Income</strong></li>
+    </ul>
+    <p>
+      The housing datasets are reported quarterly, while income is reported annually. While the
+      initial files varied in size — with some housing data containing over 250 rows stretching
+      back to 1963 — the final merged dataset focuses on the intersecting period from
+      <strong>1984 to 2024</strong>.
+    </p>
+    <p>
+      One notable assumption is that these national aggregates accurately reflect the broader
+      economic reality; this inherently masks regional real estate variations. While the raw values
+      are nominal, the analysis focuses on the ratio of housing costs to income, which controls for
+      inflation by measuring the relative purchasing power of a median household over time.
+    </p>
+  </div>
+</section>
+
+
+<!-- ── Section 3 ─────────────────────────────────────────── -->
+<section class="proj-section">
+  <h2 class="proj-section-title">Cleaning &amp; Prep</h2>
+  <div class="proj-section-body">
+    <p>
+      To ensure comparability across datasets, observation date columns were converted to datetime
+      format and a year variable was extracted. Since housing prices and HPI are reported quarterly
+      while income is annual, quarterly values were grouped by year and averaged to produce consistent
+      annual estimates — preventing artificially inflated values and maintaining alignment with the
+      income dataset's reporting frequency.
+    </p>
+    <p>
+      An inner join was performed across all four dataframes using year as the key. A major trade-off
+      was sacrificing pre-1984 housing data to ensure every row had a corresponding income value for
+      accurate affordability ratio calculations.
+    </p>
+    <p>New variables created include:</p>
+    <ul>
+      <li>
+        <strong>Median price-to-income ratio</strong> — how many years of income are needed to buy
+        a median-priced house (standard affordability)
+      </li>
+      <li>
+        <strong>Average price-to-income ratio</strong> — how many years of income are needed to buy
+        an average-priced house (affordability including the high-end market)
+      </li>
+      <li>
+        <strong>HPI-to-income ratio</strong> — how housing prices have changed relative to income
+        over time (affordability trend / asset appreciation)
+      </li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ── Section 4 ─────────────────────────────────────────── -->
+<section class="proj-section">
+  <h2 class="proj-section-title">What Is the Data Telling Us?</h2>
+  <div class="proj-section-body">
+    <p>
+      Visuals are the most intuitive way to see the complex relationship between housing costs and
+      income over the last four decades.
+    </p>
+
+    <!-- TWO-VISUAL GROUP ─────────────────────────────────── -->
+    <div class="visual-row-2">
+      <div class="visual-placeholder">
+        <span class="visual-placeholder-icon">&#9640;</span>
+        <strong>Visual 1</strong>
+        Median vs. Average Home Price Gap<br>
+        <!-- To replace: remove this div and use:
+             <img class="proj-visual" src="{{ '/assets/images/projects/ha-visual-1.png' | relative_url }}" alt="Median vs Average Home Price">
+        -->
+      </div>
+      <div class="visual-placeholder">
+        <span class="visual-placeholder-icon">&#9640;</span>
+        <strong>Visual 2</strong>
+        Price Divergence Over Time<br>
+        <!-- To replace: remove this div and use:
+             <img class="proj-visual" src="{{ '/assets/images/projects/ha-visual-2.png' | relative_url }}" alt="Price Divergence">
+        -->
+      </div>
+    </div>
+
+    <p>
+      Here you can see the widening gap between the median and average home price. It clearly shows
+      how the high-end real estate market is disproportionately driving up the average market price.
+      Looking at both the gap and the divergence visuals together, there is a clear similarity between
+      the market dynamics around 2007 and today, suggesting that like 20 years ago, today's average
+      market is being heavily influenced by high-end real estate.
+    </p>
+
+    <!-- SINGLE VISUAL ───────────────────────────────────── -->
+    <div class="visual-placeholder">
+      <span class="visual-placeholder-icon">&#9640;</span>
+      <strong>Visual 3</strong>
+      Affordability Ratios (Price-to-Income)<br>
+      <!-- To replace: remove this div and use:
+           <img class="proj-visual" src="{{ '/assets/images/projects/ha-visual-3.png' | relative_url }}" alt="Affordability Ratios">
+      -->
+    </div>
+
+    <p>
+      Affordability ratios directly measure how many times median income would be required to purchase
+      a typical home. This again shows a striking similarity between the gap in price-to-income from
+      before the 2008 financial crisis and today. On top of the market dynamic similarity, the gap
+      between what a person must earn to buy a median versus an average home is also mirrored —
+      suggesting that an average person today is in a very similar financial situation as they would
+      have been 20 years ago, right before the 2008 financial crisis.
+    </p>
+
+    <!-- SINGLE VISUAL ───────────────────────────────────── -->
+    <div class="visual-placeholder">
+      <span class="visual-placeholder-icon">&#9640;</span>
+      <strong>Visual 4</strong>
+      House Price Index vs. Income<br>
+      <!-- To replace: remove this div and use:
+           <img class="proj-visual" src="{{ '/assets/images/projects/ha-visual-4.png' | relative_url }}" alt="HPI vs Income">
+      -->
+    </div>
+
+    <p>
+      Plotting the House Price Index against income reveals purchasing power trends directly. A rising
+      ratio means house prices are increasing <strong>faster</strong> than income — a decline in
+      affordability. A falling ratio means housing prices are increasing <strong>slower</strong> than
+      income — an increase in affordability. This visualization again mirrors prior trends, illustrating
+      the same sharp increase in the ratio today as two decades earlier, revealing that people today
+      cannot afford homes because their income is growing much slower than house prices.
+    </p>
+    <p>
+      Together, these visualizations directly answer the research question: housing has become
+      structurally less affordable relative to income, and relying solely on average prices paints
+      a skewed picture of the typical buyer's reality.
+    </p>
+  </div>
+</section>
+
+
+<!-- ── Section 5 ─────────────────────────────────────────── -->
+<section class="proj-section">
+  <h2 class="proj-section-title">What Does the Data Mean?</h2>
+  <div class="proj-section-body">
+    <p>
+      This analysis reveals that U.S. housing affordability has deteriorated, with median income growth
+      severely lagging behind housing price appreciation. While both income and housing prices have
+      increased over time, housing prices have grown at a faster rate — particularly in recent decades —
+      making it significantly more difficult to afford a home today.
+    </p>
+    <p>
+      The price-to-income ratio shows a clear upward trend, indicating that purchasing a home today
+      requires a greater number of annual household incomes than before. The House Price Index also
+      rises more steeply than income in recent years, suggesting asset appreciation has outpaced wage
+      growth and reduced purchasing power for new entrants to the market. The widening gap between
+      average and median sales prices further implies increasing market imbalance, potentially
+      reflecting high-end growth or wealth concentration at the upper end of the housing market.
+    </p>
+    <p>
+      One of the most striking insights is the <strong>uncanny similarity between today's real estate
+      market and the market right before the 2008 financial crisis</strong>. The data suggests that,
+      at least within the scope of this analysis, people are in the same position as they were 20 years
+      ago near the Great Recession. However, it would be misleading to conclude the markets are
+      identical — this analysis is high-level and does not capture the granular details (renting,
+      mortgages, regulatory context) that would provide further insight into the market's health.
+    </p>
+  </div>
+</section>
+
+
+<!-- ── Section 6 ─────────────────────────────────────────── -->
+<section class="proj-section">
+  <h2 class="proj-section-title">Limits &amp; Reflection</h2>
+  <div class="proj-section-body">
+    <p>
+      Because the data consists of national aggregates, it does not account for regional variation in
+      housing markets — which can differ substantially across states and metropolitan areas. The datasets
+      also do not incorporate inflation adjustments, mortgage interest rates, or other market context,
+      all of which affect affordability in practice.
+    </p>
+    <p>
+      Median income does not reflect wealth or savings, which also influence home-buying ability.
+      This study focuses solely on home purchase affordability and does not examine rental markets,
+      which would provide a more holistic view of the housing landscape.
+    </p>
+    <p>
+      In essence, this analysis provides a broad structural view of how housing costs compare to income
+      over time. Valuable next steps would be to incorporate market context (mortgage rates, policy
+      changes), add the rental market, and break the data down geographically by state or city to
+      develop a deeper understanding of affordability and today's real estate market as a whole.
+    </p>
+  </div>
+</section>
+
+
+<!-- ── Resources ─────────────────────────────────────────── -->
+<div class="proj-links-section">
+  <h3 class="proj-links-section-title">Resources</h3>
+  <div class="proj-links-grid">
+
+    <a href="https://github.com/Aashu-P/Housing-Prices-and-Income" class="proj-link-card" target="_blank" rel="noopener noreferrer">
+      <span class="proj-link-type">GitHub Repository</span>
+      <span class="proj-link-name">Housing Prices and Income</span>
+    </a>
+
+    <a href="https://fred.stlouisfed.org/series/MEHOINUSA646N" class="proj-link-card" target="_blank" rel="noopener noreferrer">
+      <span class="proj-link-type">Dataset — FRED</span>
+      <span class="proj-link-name">Median Household Income in the United States</span>
+    </a>
+
+    <a href="https://fred.stlouisfed.org/series/MSPUS" class="proj-link-card" target="_blank" rel="noopener noreferrer">
+      <span class="proj-link-type">Dataset — FRED</span>
+      <span class="proj-link-name">Median Sales Price of Houses Sold</span>
+    </a>
+
+    <a href="https://fred.stlouisfed.org/series/ASPUS" class="proj-link-card" target="_blank" rel="noopener noreferrer">
+      <span class="proj-link-type">Dataset — FRED</span>
+      <span class="proj-link-name">Average Sales Price of Houses Sold for the United States</span>
+    </a>
+
+    <a href="https://fred.stlouisfed.org/series/USSTHPI" class="proj-link-card" target="_blank" rel="noopener noreferrer">
+      <span class="proj-link-type">Dataset — FRED</span>
+      <span class="proj-link-name">All-Transactions House Price Index for the United States</span>
+    </a>
+
+  </div>
+</div>
+
+
+<!-- ── AI Note ──────────────────────────────────────────── -->
+<p class="proj-ai-note">
+  <em>AI Transparency: Google Gemini was used to revise sentence structure for written analysis.
+  It was used for refinement for a clearer understanding to readers — not for the actual analysis.</em>
+</p>
