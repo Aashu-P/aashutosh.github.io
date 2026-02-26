@@ -4,6 +4,31 @@ Log of changes made to the site, what was changed, and how.
 
 ---
 
+## 2026-02-26 — AI Transparency made collapsible and right-aligned
+
+**What changed:**
+The AI Transparency section on the Housing Affordability project page was converted from
+a full visible section panel to a collapsible element. It now appears as a small
+"AI Transparency +" label at the bottom-right of the page. Clicking it expands a card
+with the full AI disclosure text. Clicking again collapses it.
+
+**Files modified:**
+- `projects/housing-affordability.html` — replaced `<section class="proj-section proj-section--ai">`
+  with a `<details class="ai-transparency">` / `<summary>` element. Content unchanged.
+- `assets/css/style.css` — removed `.proj-section--ai` and `.proj-section-title--ai` styles.
+  Added `.ai-transparency`, `.ai-transparency-toggle`, and `.ai-transparency-body` styles
+  with right-alignment (`margin-left: auto`), custom toggle indicators (+ / −), and a
+  card-style expanded body.
+
+**How it was done:**
+Used the native HTML `<details>` + `<summary>` elements for expand/collapse behavior
+(no JavaScript). The default browser disclosure triangle is hidden via
+`::-webkit-details-marker` and `list-style: none`, replaced with a `+` / `−`
+character via CSS `::after`. The entire element is pushed right with `margin-left: auto`
+and `max-width: fit-content`.
+
+---
+
 ## 2026-02-25 — AI Transparency section upgrade
 
 **What changed:**
