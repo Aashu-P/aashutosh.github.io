@@ -56,10 +56,7 @@ Quick reference for adding content to this site. No HTML knowledge needed for mo
    ```
 
 3. Edit the content below the front matter — update the title, lead paragraph, tags,
-   section text, visual placeholders, links, and AI note as needed.
-
-4. Follow the placeholder comments inside the file to know where to swap in real images
-   once you have them (see **Add a Visual to a Project Page** below).
+   section text, visuals, links, and AI transparency note as needed.
 
 ### Step 2 — Add the project card to the listing page
 
@@ -70,12 +67,8 @@ Quick reference for adding content to this site. No HTML knowledge needed for mo
 
    ```html
    <a href="{{ '/projects/your-project-name/' | relative_url }}" class="project-card">
-     <div class="project-card-thumb">
-       <img src="{{ '/assets/images/projects/your-project-name.jpg' | relative_url }}"
-            alt="Your Project Title"
-            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-            style="display:block;">
-       <span class="project-card-thumb-placeholder" style="display:none;">&#9632;</span>
+     <div class="project-card-thumb"
+          style="background-image: url('{{ '/assets/images/projects/your-project-name.jpg' | relative_url }}');">
      </div>
      <div class="project-card-footer">
        <p class="project-card-name">Your Project Title</p>
@@ -85,7 +78,7 @@ Quick reference for adding content to this site. No HTML knowledge needed for mo
 
 3. Replace `your-project-name` and `Your Project Title` with the real values.
 
-4. The card will show a dark placeholder square until you add a cover image
+4. The card shows a clean dark background until you add a cover image
    (see **Add a Cover Image to a Project Card** below).
 
 5. Commit and push.
@@ -98,7 +91,7 @@ The cover image is the square thumbnail shown on the Projects listing page.
 Until you add one, the card shows a plain dark background — that's intentional,
 not a bug. No placeholder file is needed.
 
-### Housing Affordability cover image (do this now)
+### Housing Affordability cover image
 
 1. Pick any screenshot or image you want to represent the project.
    **A square crop looks best** (e.g. export at 600×600 px or just crop it square).
@@ -125,12 +118,11 @@ Same process — the card in `projects.md` has a `background-image` style pointi
 
 ---
 
-## Add a Visual to a Project Page
+## Add a Visual / Chart to a Project Page
 
-Visuals inside a project page are currently shown as dashed placeholder boxes.
-Here is how to replace one with a real image.
+Images in a project page use `<img>` tags with the class `proj-visual`.
 
-### For a single visual
+### Adding a single visual
 
 1. Save your chart/graph image (PNG or JPG recommended) and name it descriptively.
    Example: `ha-visual-3.png`
@@ -142,53 +134,48 @@ Here is how to replace one with a real image.
 
 3. Open the project HTML file (e.g. `projects/housing-affordability.html`).
 
-4. Find the placeholder div for that visual. It looks like this:
+4. Add or update the `<img>` tag where you want the visual:
    ```html
-   <div class="visual-placeholder">
-     <span class="visual-placeholder-icon">&#9640;</span>
-     <strong>Visual 3</strong>
-     Affordability Ratios (Price-to-Income)<br>
-     <!-- To replace: remove this div and use:
-          <img class="proj-visual" src="{{ '/assets/images/projects/ha-visual-3.png' | relative_url }}" alt="Affordability Ratios">
-     -->
-   </div>
-   ```
-
-5. Delete the entire `<div class="visual-placeholder">...</div>` block.
-
-6. Paste the `<img>` line that was in the comment:
-   ```html
-   <img class="proj-visual" src="{{ '/assets/images/projects/ha-visual-3.png' | relative_url }}" alt="Affordability Ratios">
+   <img class="proj-visual" src="{{ '/assets/images/projects/ha-visual-3.png' | relative_url }}" alt="Description of visual">
    ```
    Make sure the filename in `src=` matches your actual file.
 
-7. Commit and push.
+5. Commit and push.
 
-### For the two-column visual pair (Visuals 1 & 2 in Housing Affordability)
+### Adding two visuals side by side
 
-1. Save both images, e.g. `ha-visual-1.png` and `ha-visual-2.png`, and drop them into
-   `assets/images/projects/`.
+Wrap two `<img>` tags in a `proj-visual-row-2` div:
 
-2. Find the `<div class="visual-row-2">` block in the project HTML file.
-   It contains two placeholder divs side-by-side.
+```html
+<div class="proj-visual-row-2">
+  <img class="proj-visual" src="{{ '/assets/images/projects/ha-visual-1.png' | relative_url }}" alt="First visual">
+  <img class="proj-visual" src="{{ '/assets/images/projects/ha-visual-2.png' | relative_url }}" alt="Second visual">
+</div>
+```
 
-3. Replace the entire `<div class="visual-row-2">` block with:
-   ```html
-   <div class="proj-visual-row-2">
-     <img class="proj-visual" src="{{ '/assets/images/projects/ha-visual-1.png' | relative_url }}" alt="Median vs Average Home Price">
-     <img class="proj-visual" src="{{ '/assets/images/projects/ha-visual-2.png' | relative_url }}" alt="Price Divergence">
-   </div>
-   ```
+On mobile, the two images will stack vertically automatically.
 
-4. Commit and push.
+### Current visuals in Housing Affordability
+
+The project page already has 4 `<img>` tags wired to these filenames:
+
+| Slot     | Filename            | Description                      |
+|----------|---------------------|----------------------------------|
+| Visual 1 | `ha-visual-1.png`   | Median vs. Average Home Price    |
+| Visual 2 | `ha-visual-2.png`   | Price Divergence                 |
+| Visual 3 | `ha-visual-3.png`   | Affordability Ratios             |
+| Visual 4 | `ha-visual-4.png`   | HPI vs. Income                   |
+
+**To make them show up:** export your charts with those exact filenames, drop them
+into `assets/images/projects/`, commit, and push. No code changes needed.
 
 ---
 
 ## Add an Image to a Blog Post
 
-1. Drop the image file into `assets/images/` (create this folder if it doesn't exist yet).
+1. Drop the image file into `assets/images/`.
 
-2. Reference it in a blog post or page like this:
+2. Reference it in your blog post Markdown:
 
    ```markdown
    ![description of image]({{ '/assets/images/your-image.jpg' | relative_url }})
@@ -196,19 +183,38 @@ Here is how to replace one with a real image.
 
 3. If you want the image smaller, use this HTML version in your post:
 
-  ```html
-  <img class="post-image-small" src="{{ '/assets/images/your-image.jpg' | relative_url }}" alt="description of image">
-  ```
+   ```html
+   <img class="post-image-small" src="{{ '/assets/images/your-image.jpg' | relative_url }}" alt="description">
+   ```
 
-4. To change the size yourself, open `assets/css/style.css` and edit the width in `.post-image-small`:
+4. To change the size, open `assets/css/style.css` and edit the width in `.post-image-small`:
 
-  ```css
-  .post-image-small {
-    width: min(420px, 100%);
-  }
-  ```
+   ```css
+   .post-image-small {
+     width: min(420px, 100%);
+   }
+   ```
 
-  - Change `420px` to any value you want (example: `320px` smaller, `520px` bigger).
+   Change `420px` to any value you want (e.g. `320px` smaller, `520px` bigger).
+
+---
+
+## Edit the AI Transparency Note on a Project
+
+Each project page has an AI Transparency section at the bottom. To edit it:
+
+1. Open the project HTML file (e.g. `projects/housing-affordability.html`).
+
+2. Find the `<!-- ── AI Transparency -->` comment near the bottom.
+
+3. Edit the text inside the `<div class="proj-section-body">`.
+
+4. To add a link, use:
+   ```html
+   <a href="https://your-url-here" target="_blank" rel="noopener noreferrer">Link Text</a>
+   ```
+
+5. To bold a word, wrap it in `<strong>word</strong>`.
 
 ---
 
@@ -219,12 +225,43 @@ It's plain text — just change the words, don't touch the `<p>`, `<ul>`, or `<l
 
 ---
 
-## Edit Site-Wide Info (name, social links)
+## Edit Navigation Links
 
-Open `_config.yml`. Change:
-- `title` — your name shown in the browser tab
+The nav bar (Home, Blogs, Projects) is in `_layouts/default.html` lines 18–20.
+To add a new page to the nav, add a new `<a>` tag following the same pattern.
+
+---
+
+## Edit Footer (Social Links)
+
+Social links are controlled by `_config.yml`:
 - `social.linkedin` — your LinkedIn URL
 - `social.github` — your GitHub URL
+
+The footer template is in `_layouts/default.html` lines 31–39 if you want to add
+more links (e.g. email, Twitter).
+
+---
+
+## Edit Site-Wide Info
+
+Open `_config.yml`:
+- `title` — your name (appears in the browser tab)
+- `url` — your GitHub Pages URL
+- `baseurl` — the repo name path (e.g. `/aashutosh.github.io`)
+
+---
+
+## Previewing Changes Locally
+
+If you have Jekyll installed, run:
+```
+bundle exec jekyll serve
+```
+from the repo root. Then open `http://localhost:4000/aashutosh.github.io/` in your browser.
+
+If you don't have Jekyll installed, just push to GitHub and check the live site after
+the GitHub Actions build completes (takes about 1–2 minutes).
 
 ---
 
@@ -232,8 +269,6 @@ Open `_config.yml`. Change:
 
 ```
 _posts/                        ← blog post files go here
-_data/
-  projects.yml                 ← (legacy, no longer used)
 assets/
   images/
     projects/                  ← project cover images + in-page visuals go here
@@ -251,4 +286,6 @@ index.md                       ← home page
 blog.md                        ← blog list page
 projects.md                    ← projects listing page (square card grid)
 _config.yml                    ← site title, author, social links
+SITE_GUIDE.md                  ← this file
+CHANGELOG.md                   ← log of changes made to the site
 ```

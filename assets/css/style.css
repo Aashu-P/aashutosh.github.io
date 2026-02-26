@@ -639,15 +639,22 @@ ul { list-style: none; }
   color: var(--accent);
 }
 
-/* AI transparency note */
-.proj-ai-note {
-  font-size: 0.78rem;
-  color: var(--text-dim);
-  font-style: italic;
-  margin-top: 28px;
-  padding-top: 20px;
-  border-top: 1px solid var(--border);
-  line-height: 1.65;
+/* AI transparency section (variant) */
+.proj-section--ai {
+  border-left-color: var(--text-dim);
+  margin-top: 36px;
+}
+.proj-section-title--ai {
+  color: var(--text-muted);
+}
+.proj-section-body a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.2s;
+}
+.proj-section-body a:hover {
+  color: var(--text);
 }
 
 /* ============================================
