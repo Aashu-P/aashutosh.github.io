@@ -1,0 +1,106 @@
+---
+layout: project
+title: "Diamond Price Prediction"
+permalink: /projects/diamond-price-prediction/
+---
+
+<div class="project-back">
+  <a href="{{ '/projects/' | relative_url }}" class="back-link">← All Projects</a>
+</div>
+
+<article>
+  <section class="proj-section">
+    <h1 class="project-title">Introduction</h1>
+    <div class="proj-section-body">
+      <p>Diamonds are often one of the most significant and emotionally driven purchases a person will make. But when you walk into a jewelry store, how do you know if the price tag on a diamond is actually fair? The jewelry market is notoriously opaque, with prices dictated by a combination of subjective qualities and objective measurements.</p>
+      <p>For my project, I set out to answer a specific research question: What physical characteristics of a diamond hold the most predictive value in its price, and can those factors be used to predict the value of diamonds in the consumer market? By answering this, we can help consumers to make data-driven decisions rather than relying solely on a jeweler's word.</p>
+    </div>
+  </section>
+
+  <section class="proj-section">
+    <h2 class="proj-section-title">The Data</h2>
+    <div class="proj-section-body">
+      <p>The data for this project comes from the "Diamonds" dataset on Kaggle, which contains the prices and attributes of about 54,000 diamonds. The dataset includes the following features:</p>
+      <ul>
+        <li>Carat: The weight of the diamond.</li>
+        <li>Cut: The quality of the cut, which affects the diamond's brilliance. The ranking from best to worst is: Ideal, Premium, Very Good, Good, Fair.</li>
+        <li>Color: The diamond's color grade. The ranking from best (colorless) to worst (slightly yellow tinted) is: D, E, F, G, H, I, J.</li>
+        <li>Clarity: A measurement of how clear the diamond is and the presence of inclusions (internal flaws). The ranking from best to worst is: IF (Internally Flawless), VVS1, VVS2, VS1, VS2, SI1, SI2, I1.</li>
+        <li>Depth: The total depth percentage of the diamond.</li>
+        <li>Table: The width of the flat top of the diamond relative to its widest point.</li>
+        <li>Price: The cost of the diamond in US dollars (our target variable).</li>
+        <li>x: The length of the diamond in millimeters.</li>
+        <li>y: The width of the diamond in millimeters.</li>
+        <li>z: The depth of the diamond in millimeters.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="proj-section">
+    <h2 class="proj-section-title">Exploratory Data Analysis (EDA) &amp; Preprocessing</h2>
+    <div class="proj-section-body">
+      <p>Before building any models, it's important to understand the underlying patterns in the data.</p>
+      <p>Through my EDA, I discovered that the data was very clean, having no missing values or data type errors etc. I created a correlation matrix and found that several features were highly correlated with each other, particularly the dimensions (x, y, z) and carat weight. Understanding this multicollinearity was important for how the models would later interpret feature importance.</p>
+      <p>I also visualized the dataset to uncover trends. Looking at the price distribution histogram, it was clear the data was heavily right-skewed, meaning the majority of diamonds are cheaper, with a long tail of very expensive, rare stones. A pair plot of price versus the numeric features further highlighted the strong relationship between size and cost.</p>
+      <p>Finally, I explored the categorical variables. The box plots showing the distribution of cut, color, and clarity helped visualize how these subjective grading scales influence a diamond's final market value. They tell us that most diamonds (at least in the dataset) have an ideal cut, “D” color, and SI1 clarity.</p>
+
+      <img class="proj-visual" src="{{ '/assets/images/projects/corr matrix for diamonds.png' | relative_url }}" alt="Correlation Matrix">
+      <img class="proj-visual" src="{{ '/assets/images/projects/diamond price distribution.png' | relative_url }}" alt="Price Distribution Histogram">
+      <img class="proj-visual" src="{{ '/assets/images/projects/diamond Price vs Numeric Features.png' | relative_url }}" alt="Pair Plot (Price vs Numeric Features)">
+      <div class="proj-visual-row-3">
+        <img class="proj-visual" src="{{ '/assets/images/projects/box plot for cut.png' | relative_url }}" alt="Box Plot for Cut">
+        <img class="proj-visual" src="{{ '/assets/images/projects/box plot for clarity.png' | relative_url }}" alt="Box Plot for Clarity">
+        <img class="proj-visual" src="{{ '/assets/images/projects/box plot for color.png' | relative_url }}" alt="Box Plot for Color">
+      </div>
+    </div>
+  </section>
+
+  <section class="proj-section">
+    <h2 class="proj-section-title">Machine Learning Modeling</h2>
+    <div class="proj-section-body">
+      <p>To begin the modeling phase, the data was first split to have 20% as test data to evaluate the final performance.</p>
+      <p>Because the data was already clean, it was fed directly into a custom preprocessor pipeline. This preprocessor separated the numerical columns from the categorical columns. It applied a StandardScaler to the numerical columns so that large values wouldn't dominate the algorithms. For the categorical columns, it applied a OneHotEncoder (to turn text categories into numbers) followed by another StandardScaler . This preprocessing pipeline was used so the models only saw the processed data during the cross-validation steps.</p>
+      <p>Four different algorithms were used as base models: ElasticNet, LinearSVR, KNNRegressor, and XGBoostRegressor. These models were put through a GridSearchCV to test and optimize hundreds of hyperparameters using 5-fold cross-validation. Model performance was primarily measured and optimized based on RMSE (Root Mean Squared Error) because the primary goal was to reduce the dollar-amount error in the model's price predictions.</p>
+      <p>After the grid search, the top-performing XGBRegressor model was isolated and further tuned to find the absolute best learning rate using early stopping. It's important to note that the validation set for this early stopping step was taken entirely from the training set so as not to cause any test data leakage.</p>
+      <p>Finally, to squeeze out maximum performance, a stacking ensemble model was created using StackingRegressor. This ensemble model predictions of the previous models, using a RidgeCV as its final estimator with 5-fold cross-validation to make its own predictions.</p>
+    </div>
+  </section>
+
+  <section class="proj-section">
+    <h2 class="proj-section-title">Results</h2>
+    <div class="proj-section-body">
+      <h3 class="proj-section-title">Part 1: Model Evaluation</h3>
+      <img class="proj-visual" src="{{ '/assets/images/projects/diamond dataframe with results.png' | relative_url }}" alt="Picture of Dataframe with Results">
+      <p>The Stacking model emerged as the clear winner, outperforming all other models across R^2, RMSE, and MAE metrics. Its R^2 score of 0.98 tells us that the model can explain 98% of the variance in diamond prices. The MAE tells us that the model is incredibly accurate, only deviating from the actual price by an average of $269; very low error margin for a luxury consumer market.</p>
+
+      <h3 class="proj-section-title">Part 2: Feature Importance</h3>
+      <img class="proj-visual" src="{{ '/assets/images/projects/Diamond dataframe with Feature Importances.png' | relative_url }}" alt="Picture of Dataframe with Feature Importances">
+      <img class="proj-visual" src="{{ '/assets/images/projects/diamond Bar Chart of Importances.png' | relative_url }}" alt="Bar Chart of Importances">
+      <p>Because the StackingRegressor works by combining a variety of different models, the built in feature importances (of the base models) don't apply universally. Thus, Permutation Importance was used. This technique works by measuring exactly how much the model's error increases when a specific feature's data is randomly shuffled, therefore evaluating its relationship with the target variable regardless of the model type.</p>
+      <p>The findings revealed that the top 3 most important features for predicting price were Carat, y (width), and Clarity, followed closely by Color. Applying this to the real world makes perfect sense: when looking for a diamond, consumers primarily care about the carat (the weight) and want the majority of that weight to translate into the physical 'y' spread (how large the diamond appears from the top). Once size is established, the clarity (perfection) of the diamond is evaluated, and finally, the color.</p>
+    </div>
+  </section>
+
+  <section class="proj-section">
+    <h2 class="proj-section-title">Conclusion</h2>
+    <div class="proj-section-body">
+      <p>By leveraging a Stacking Regressor ensemble, I was able to accurately predict the value of diamonds in the consumer market based on physical characteristics. Consumers can use these insights to verify that a jeweler's price aligns with the objective mathematical value of the diamond's size, clarity, and color, ensuring a fair purchase.</p>
+    </div>
+  </section>
+
+  <section class="proj-section">
+    <h2 class="proj-section-title">References</h2>
+    <div class="proj-section-body">
+      <p>Data Source:</p>
+      <p>Agrawal, S. (n.d.). Diamonds. Www.kaggle.com. <a href="https://www.kaggle.com/datasets/shivam2503/diamonds" target="_blank" rel="noopener noreferrer">https://www.kaggle.com/datasets/shivam2503/diamonds</a></p>
+      <p>Libraries Used: Pandas, NumPy, Scikit-Learn, Seaborn, Matplotlib, XGBoost.</p>
+    </div>
+  </section>
+
+  <details class="ai-transparency">
+    <summary class="ai-transparency-toggle">AI Transparency</summary>
+    <div class="ai-transparency-body">
+      <p>AI Tranparency- Google Gemini was utilized as a grammar and structure reviser for report writing. ChatGPT 5.3 codex was used for revising code syntax. All code structure, idea and final analyses was done independently.</p>
+    </div>
+  </details>
+</article>

@@ -10,6 +10,15 @@ permalink: /projects/
 
   <div class="project-grid">
 
+    <a href="{{ '/projects/diamond-price-prediction/' | relative_url }}" class="project-card">
+      <div class="project-card-thumb"
+           style="background-image: url('{{ '/assets/images/projects/diamond cover image.jpg' | relative_url }}');">
+      </div>
+      <div class="project-card-footer">
+        <p class="project-card-name">Diamond Price Prediction</p>
+      </div>
+    </a>
+
     <a href="{{ '/projects/housing-affordability/' | relative_url }}" class="project-card">
       <div class="project-card-thumb"
            style="background-image: url('{{ '/assets/images/projects/housing-affordability.jpg' | relative_url }}');">

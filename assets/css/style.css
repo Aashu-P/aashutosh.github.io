@@ -592,6 +592,14 @@ ul { list-style: none; }
 }
 .proj-visual-row-2 .proj-visual { margin: 0; }
 
+.proj-visual-row-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 14px;
+  margin: 20px 0;
+}
+.proj-visual-row-3 .proj-visual { margin: 0; }
+
 /* Resources / links section */
 .proj-links-section {
   margin: 32px 0 20px;
@@ -698,7 +706,8 @@ ul { list-style: none; }
   .site-nav    { gap: 18px; }
   .nav-link    { font-size: 0.85rem; }
   .visual-row-2,
-  .proj-visual-row-2 { grid-template-columns: 1fr; }
+  .proj-visual-row-2,
+  .proj-visual-row-3 { grid-template-columns: 1fr; }
   .project-grid { grid-template-columns: repeat(2, 1fr); }
   .proj-section { padding: 20px 18px 20px 16px; }
 }
