@@ -647,6 +647,36 @@ ul { list-style: none; }
   color: var(--accent);
 }
 
+.proj-reading-order {
+  margin: 18px 0 10px;
+}
+.proj-reading-order-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+.proj-reading-order-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+}
+.proj-reading-order-path {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.proj-reading-order-note {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
 /* AI transparency — collapsible, right-aligned */
 .ai-transparency {
   margin-top: 36px;
