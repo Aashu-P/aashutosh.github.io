@@ -12,7 +12,7 @@ permalink: /projects/
 
     <a href="{{ '/projects/diamond-price-prediction/' | relative_url }}" class="project-card">
       <div class="project-card-thumb"
-           style="background-image: url('{{ '/assets/images/projects/diamond cover image.jpg' | relative_url }}');">
+           style="background-image: url('{{ '/assets/images/projects/diamond cover gif.gif' | relative_url }}');">
       </div>
       <div class="project-card-footer">
         <p class="project-card-name">Diamond Price Prediction</p>
