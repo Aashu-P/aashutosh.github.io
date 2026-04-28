@@ -18,8 +18,7 @@ permalink: /projects/stock-recommendation-system/
 
 <article>
   <div class="project-hero">
-    <h1 class="project-title">Title - Finding Patterns in the Chaos: Building an AI Stock Recommendation System</h1>
-    <img class="proj-visual" src="{{ '/projects/stonks_cat_cover.gif' | relative_url }}" alt="Stonks Cat Cover">
+    <h1 class="project-title">Finding Patterns in the Chaos: Building an AI Stock Recommendation System</h1>
   </div>
 
   <section class="proj-section">
@@ -51,7 +50,7 @@ permalink: /projects/stock-recommendation-system/
       <p>When we analyzed what the model was prioritizing, the results were fascinating. The model revealed that a stock's long-term historical risk and return profile represents the primary difference among equities (accounting for 60% of the variance), while its recent short-term price momentum operates as a distinct, secondary factor (20% variance).</p>
 
       <figure class="proj-figure">
-        <img class="proj-visual" src="{{ '/projects/pca_loadings.png' | relative_url }}" alt="2D PCA loadings">
+        <img class="proj-visual" src="{{ 'assets\images\projects\2d pca loadings.png' | relative_url }}" alt="2D PCA loadings">
         <figcaption>A breakdown of the PCA feature loadings, showing how the first principal component (PC1) is dominated by long-term risk metrics, while the second (PC2) is driven by short-term momentum.</figcaption>
       </figure>
     </div>
@@ -64,14 +63,14 @@ permalink: /projects/stock-recommendation-system/
       <p>To ensure we weren't just guessing how many clusters there should be, we utilized the "Elbow Method," a mathematical approach that calculates the optimal number of clusters that balances model complexity with tight, cohesive groupings.</p>
 
       <figure class="proj-figure">
-        <img class="proj-visual" src="{{ '/projects/k_means_elbow.png' | relative_url }}" alt="Elbow Method for K-Means clustering">
+        <img class="proj-visual" src="{{ 'assets\images\projects\2 dim k means elbow method.png' | relative_url }}" alt="Elbow Method for K-Means clustering">
         <figcaption>The Elbow Method used to identify the mathematically optimal number of clusters for our 2-Dimensional PCA model.</figcaption>
       </figure>
 
       <p>Once the optimal number of clusters was found, our algorithm successfully mapped out the market, separating the 243 stocks into clear, distinct groups based entirely on their behavioral data.</p>
 
       <figure class="proj-figure">
-        <img class="proj-visual" src="{{ '/projects/k_means_clusters.png' | relative_url }}" alt="K-Means clusters graphed">
+        <img class="proj-visual" src="{{ 'assets\images\projects\clusters graphed.png' | relative_url }}" alt="K-Means clusters graphed">
         <figcaption>The final K-Means model visualizing the distinct clusters of stocks mapped across the two primary behavioral dimensions.</figcaption>
       </figure>
     </div>
@@ -84,7 +83,7 @@ permalink: /projects/stock-recommendation-system/
       <p>The results were a success. Over our evaluation period, the recommended stocks successfully moved in a highly correlated manner, proving that our algorithm could accurately predict grouped behavior.</p>
 
       <figure class="proj-figure">
-        <img class="proj-visual" src="{{ '/projects/stock_rec_results.png' | relative_url }}" alt="One week stock recommendation results">
+        <img class="proj-visual" src="{{ 'assets\images\projects\1 week stock rec results.png' | relative_url }}" alt="One week stock recommendation results">
         <figcaption>Evaluating the recommendation system. The recommended stocks from Cluster 5 clearly mirror the behavioral movements of the primary selected stock. (Note: AAOI had just announced a new Hyperscaler datacenter contract, thus the jump in returns in this week)</figcaption>
       </figure>
     </div>
