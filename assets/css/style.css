@@ -600,6 +600,19 @@ ul { list-style: none; }
 }
 .proj-visual-row-3 .proj-visual { margin: 0; }
 
+.proj-figure {
+  margin: 20px 0;
+}
+.proj-figure .proj-visual {
+  margin: 0;
+}
+.proj-figure figcaption {
+  margin-top: 8px;
+  color: var(--text-dim);
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
 /* Resources / links section */
 .proj-links-section {
   margin: 32px 0 20px;

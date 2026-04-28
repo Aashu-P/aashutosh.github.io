@@ -19,6 +19,15 @@ permalink: /projects/
       </div>
     </a>
 
+    <a href="{{ '/projects/stock-recommendation-system/' | relative_url }}" class="project-card">
+      <div class="project-card-thumb"
+           style="background-image: url('{{ '/projects/stonks_cat_cover.gif' | relative_url }}');">
+      </div>
+      <div class="project-card-footer">
+        <p class="project-card-name">AI Stock Recommendation System</p>
+      </div>
+    </a>
+
     <a href="{{ '/projects/housing-affordability/' | relative_url }}" class="project-card">
       <div class="project-card-thumb"
            style="background-image: url('{{ '/assets/images/projects/housing-affordability.jpg' | relative_url }}');">

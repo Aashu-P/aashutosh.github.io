@@ -1,0 +1,144 @@
+---
+layout: project
+title: "Finding Patterns in the Chaos: Building an AI Stock Recommendation System"
+permalink: /projects/stock-recommendation-system/
+---
+
+<div class="project-back">
+  <a href="{{ '/projects/' | relative_url }}" class="back-link">← All Projects</a>
+</div>
+
+<div class="proj-reading-order" role="note" aria-label="High level to low level reading order">
+  <p class="proj-reading-order-title">High Level -&gt; Low Level</p>
+  <div class="proj-reading-order-box">
+    <p class="proj-reading-order-path">Website Report &gt; Streamlit Deployment &gt; Technical Report &gt; Github Repository</p>
+    <p class="proj-reading-order-note">For deeper technical detail, move through these resources from left to right.</p>
+  </div>
+</div>
+
+<article>
+  <div class="project-hero">
+    <h1 class="project-title">Title - Finding Patterns in the Chaos: Building an AI Stock Recommendation System</h1>
+    <img class="proj-visual" src="{{ '/projects/stonks_cat_cover.gif' | relative_url }}" alt="Stonks Cat Cover">
+  </div>
+
+  <section class="proj-section">
+    <h2 class="proj-section-title">Introduction</h2>
+    <div class="proj-section-body">
+      <p>For the everyday investor, the stock market can feel like a chaotic ocean of numbers, flashing screens, and unpredictable swings. One of the biggest challenges investors face is identifying which stocks actually behave similarly to one another. Many people want to build portfolios where their investments move in a coordinated, predictable direction, but finding those hidden connections manually across thousands of companies is nearly impossible.</p>
+      <p>For our project, we set out to answer a specific question: Can we use an unsupervised machine learning model to automatically group stocks that behave alike, and use those groups to create a recommendation system?</p>
+      <p>Our goal was to take the guesswork out of finding related stocks, giving investors a clearer, data driven lens through which to view the market.</p>
+    </div>
+  </section>
+
+  <section class="proj-section">
+    <h2 class="proj-section-title">The Data &amp; Feature Engineering</h2>
+    <div class="proj-section-body">
+      <p>To understand how stocks move, we built an automated pipeline to gather 10 years of daily price data for 243 different NASDAQ companies. However, simply looking at a stock's daily closing price isn't enough to understand its true "personality." We engineered specific indicators to capture a fuller picture of how these companies operate:</p>
+      <ul>
+        <li><strong>Long-Term Reliability &amp; Risk:</strong> We measured historical average performance, volatility, worst-case historical drops (Max Drawdown), and risk-adjusted returns (Sharpe Ratio).</li>
+        <li><strong>Short-Term Momentum:</strong> We tracked recent 30-day and 90-day streaks to see how the stock was behaving right now.</li>
+        <li><strong>Market Alignment:</strong> We measured how closely each stock mirrored the broader market (the S&amp;P 500).</li>
+      </ul>
+      <p>Because these metrics exist on wildly different scales, we standardized the data so that every feature carried an equal weight when fed into the model.</p>
+    </div>
+  </section>
+
+  <section class="proj-section">
+    <h2 class="proj-section-title">Cutting Through the Noise</h2>
+    <div class="proj-section-body">
+      <p>Because we gave the AI so much complex information, we first used a statistical technique called Principal Component Analysis (PCA) to simplify the dataset. This mathematically strips away the random "noise" of the market while keeping the core behavioral signals intact.</p>
+      <p>When we analyzed what the model was prioritizing, the results were fascinating. The model revealed that a stock's long-term historical risk and return profile represents the primary difference among equities (accounting for 60% of the variance), while its recent short-term price momentum operates as a distinct, secondary factor (20% variance).</p>
+
+      <figure class="proj-figure">
+        <img class="proj-visual" src="{{ '/projects/pca_loadings.png' | relative_url }}" alt="2D PCA loadings">
+        <figcaption>A breakdown of the PCA feature loadings, showing how the first principal component (PC1) is dominated by long-term risk metrics, while the second (PC2) is driven by short-term momentum.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="proj-section">
+    <h2 class="proj-section-title">Grouping the Market</h2>
+    <div class="proj-section-body">
+      <p>With the data streamlined, we used a K-Means clustering algorithm. Simply put, the model looks at all these indicators and organizes the companies into distinct clusters where they act similarly.</p>
+      <p>To ensure we weren't just guessing how many clusters there should be, we utilized the "Elbow Method," a mathematical approach that calculates the optimal number of clusters that balances model complexity with tight, cohesive groupings.</p>
+
+      <figure class="proj-figure">
+        <img class="proj-visual" src="{{ '/projects/k_means_elbow.png' | relative_url }}" alt="Elbow Method for K-Means clustering">
+        <figcaption>The Elbow Method used to identify the mathematically optimal number of clusters for our 2-Dimensional PCA model.</figcaption>
+      </figure>
+
+      <p>Once the optimal number of clusters was found, our algorithm successfully mapped out the market, separating the 243 stocks into clear, distinct groups based entirely on their behavioral data.</p>
+
+      <figure class="proj-figure">
+        <img class="proj-visual" src="{{ '/projects/k_means_clusters.png' | relative_url }}" alt="K-Means clusters graphed">
+        <figcaption>The final K-Means model visualizing the distinct clusters of stocks mapped across the two primary behavioral dimensions.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="proj-section">
+    <h2 class="proj-section-title">Testing the Recommendations</h2>
+    <div class="proj-section-body">
+      <p>To see if our system actually worked, we evaluated it by simulating a stock acquisition. We selected "Cluster 5" because the stocks inside it balanced both long-term stability and short-term growth. We picked one primary stock from this group (AAOI) and recommended the others to act alongside it.</p>
+      <p>The results were a success. Over our evaluation period, the recommended stocks successfully moved in a highly correlated manner, proving that our algorithm could accurately predict grouped behavior.</p>
+
+      <figure class="proj-figure">
+        <img class="proj-visual" src="{{ '/projects/stock_rec_results.png' | relative_url }}" alt="One week stock recommendation results">
+        <figcaption>Evaluating the recommendation system. The recommended stocks from Cluster 5 clearly mirror the behavioral movements of the primary selected stock. (Note: AAOI had just announced a new Hyperscaler datacenter contract, thus the jump in returns in this week)</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="proj-section">
+    <h2 class="proj-section-title">Societal Impact: Benefits, Risks, and Ethics</h2>
+    <div class="proj-section-body">
+      <p>When we bridge the gap between machine learning and personal finance, there are massive societal implications to consider.</p>
+      <p><strong>The Benefits:</strong> Tools like this democratize finance. Historically, only high-level hedge funds had the resources to map out complex market behaviors. By building an automated recommendation system, everyday investors can use data driven insights to structure their portfolios rather than relying on guesswork or paying high fees for basic advice.</p>
+      <p><strong>The Potential Harms:</strong> There is a severe ethical danger in framing AI groupings as definitive "recommendations." Algorithms like ours rely entirely on past historical data. It operates under the assumption that past clustering dictates future alignment. It cannot predict sudden real-world shifts (ex- AAOI announcement), economic crashes, or unexpected company scandals.</p>
+      <p><strong>Societal Implications:</strong> If users over-rely on an AI system without understanding that it is just a mathematical model, not a magic crystal ball, they could face massive financial risk. Transparency is absolutely essential. We must ensure that society views AI in finance as an exploratory guide to help make informed decisions, never as a guarantee of financial safety.</p>
+    </div>
+  </section>
+
+  <section class="proj-section">
+    <h2 class="proj-section-title">Conclusion</h2>
+    <div class="proj-section-body">
+      <p>By leveraging machine learning, we successfully created a system that groups and recommends stocks based on their behavioral similarities. While it isn't a tool designed to guarantee a profit, it successfully proves that the underlying mathematical patterns of the stock market can be isolated and mapped. With clear transparency about its limitations, this kind of system can be an incredibly powerful tool for the modern investor.</p>
+    </div>
+  </section>
+
+  <div class="proj-links-section">
+    <h3 class="proj-links-section-title">Resources</h3>
+    <div class="proj-links-grid">
+      <a href="https://stockrecommendation.streamlit.app/" class="proj-link-card" target="_blank" rel="noopener noreferrer">
+        <span class="proj-link-type">Website</span>
+        <span class="proj-link-name">Streamlit deployment</span>
+      </a>
+
+      <a href="https://docs.google.com/document/d/11PMxPNO12n1FSpZ5uzVPknfTSDTy1aAvFav-UBEnVXs/edit?usp=sharing" class="proj-link-card" target="_blank" rel="noopener noreferrer">
+        <span class="proj-link-type">Report</span>
+        <span class="proj-link-name">Technical report</span>
+      </a>
+
+      <a href="https://github.com/Aashu-P/Stocking-Clustering-Recommendation-System" class="proj-link-card" target="_blank" rel="noopener noreferrer">
+        <span class="proj-link-type">Repository</span>
+        <span class="proj-link-name">Github Repository</span>
+      </a>
+    </div>
+  </div>
+
+  <section class="proj-section">
+    <h2 class="proj-section-title">References</h2>
+    <div class="proj-section-body">
+      <p>Data Source: Aroussi, R. yfinance: <a href="https://github.com/ranaroussi/yfinance" target="_blank" rel="noopener noreferrer">https://github.com/ranaroussi/yfinance</a></p>
+      <p>Libraries Used: Pandas, NumPy, Scikit-Learn, Matplotlib, Seaborn.</p>
+    </div>
+  </section>
+
+  <details class="ai-transparency">
+    <summary class="ai-transparency-toggle">AI Transparency</summary>
+    <div class="ai-transparency-body">
+      <p>AI Usage: Google Gemini was utilized as a structure and content reviser to adapt technical reports into this layman portfolio post format. All code execution, feature engineering, and base analyses were conducted independently.</p>
+    </div>
+  </details>
+</article>
